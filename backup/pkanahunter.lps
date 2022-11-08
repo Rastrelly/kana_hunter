@@ -21,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="146"/>
-        <CursorPos Y="162"/>
+        <TopLine Value="652"/>
+        <CursorPos X="25" Y="671"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -53,10 +53,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ukanahunter.pas"/>
-        <Caret Line="409" Column="8" TopLine="377"/>
-      </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
         <Caret Line="88" Column="57" TopLine="488"/>
@@ -172,6 +168,10 @@
       <Position>
         <Filename Value="ukanahunter.pas"/>
         <Caret Line="163" Column="30" TopLine="144"/>
+      </Position>
+      <Position>
+        <Filename Value="ukanahunter.pas"/>
+        <Caret Line="162" TopLine="146"/>
       </Position>
     </JumpHistory>
     <RunParams>

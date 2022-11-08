@@ -20,9 +20,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="1"/>
-      <BuildNr Value="35"/>
-      <StringTable CompanyName="HSI" ProductName="Kana Hunter" ProductVersion="1.1"/>
+      <MinorVersionNr Value="2"/>
+      <BuildNr Value="36"/>
+      <StringTable CompanyName="HSI" ProductName="Kana Hunter" ProductVersion="1.2"/>
     </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
