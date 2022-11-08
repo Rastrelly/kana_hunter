@@ -20,8 +20,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="19"/>
-      <StringTable CompanyName="HSI" ProductName="Kana Hunter" ProductVersion="1.0"/>
+      <MinorVersionNr Value="1"/>
+      <BuildNr Value="28"/>
+      <StringTable CompanyName="HSI" ProductName="Kana Hunter" ProductVersion="1.1"/>
     </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
@@ -48,6 +49,12 @@
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ukhnewsymbols.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form2"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
