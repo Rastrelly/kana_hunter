@@ -1,0 +1,50 @@
+object Form3: TForm3
+  Left = 378
+  Height = 640
+  Top = 202
+  Width = 669
+  BorderStyle = bsDialog
+  Caption = 'Statistics'
+  ClientHeight = 640
+  ClientWidth = 669
+  FormStyle = fsStayOnTop
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '2.2.0.4'
+  object StringGrid1: TStringGrid
+    Left = 0
+    Height = 640
+    Top = 0
+    Width = 669
+    Align = alClient
+    AutoEdit = False
+    DefaultColWidth = 128
+    FixedCols = 0
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -19
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goSmoothScroll, goFixedColSizing]
+    ParentFont = False
+    TabOrder = 0
+    TitleStyle = tsStandard
+    Cells = (
+      5
+      0
+      0
+      'a'
+      1
+      0
+      'i'
+      2
+      0
+      'u'
+      3
+      0
+      'e'
+      4
+      0
+      'o'
+    )
+  end
+end

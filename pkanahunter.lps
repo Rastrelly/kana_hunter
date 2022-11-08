@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="33"/>
       </Unit>
       <Unit>
         <Filename Value="ukanahunter.pas"/>
@@ -21,19 +21,32 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="338"/>
-        <CursorPos X="46" Y="362"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="652"/>
+        <CursorPos X="25" Y="671"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="ukhnewsymbols.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form2"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="60" Y="19"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ukhstats.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form3"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="26"/>
-        <CursorPos X="49" Y="59"/>
+        <TopLine Value="23"/>
+        <CursorPos X="111" Y="38"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -42,123 +55,123 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="473" Column="3" TopLine="471"/>
+        <Caret Line="88" Column="57" TopLine="488"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="479" Column="14" TopLine="472"/>
+        <Caret Line="456" Column="3" TopLine="528"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="485" Column="14" TopLine="473"/>
+        <Caret Line="529" Column="3" TopLine="349"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="491" Column="14" TopLine="474"/>
+        <Caret Line="486" Column="92" TopLine="573"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="497" Column="14" TopLine="475"/>
+        <Caret Line="499" Column="136" TopLine="93"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="327" Column="18" TopLine="318"/>
+        <Caret Line="498" Column="3" TopLine="495"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="422" Column="117" TopLine="393"/>
+        <Caret Line="232" Column="27" TopLine="196"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="406" Column="20" TopLine="393"/>
+        <Caret Line="488" Column="45" TopLine="460"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="407" Column="20" TopLine="394"/>
+        <Caret Line="442" Column="41" TopLine="423"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="408" Column="20" TopLine="395"/>
+        <Caret Line="485" Column="11" TopLine="455"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="415" Column="20" TopLine="397"/>
+        <Caret Line="495" Column="17" TopLine="462"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="596" Column="25" TopLine="559"/>
+        <Caret Line="505" Column="19" TopLine="605"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="415" Column="49" TopLine="403"/>
+        <Caret Line="121" Column="22" TopLine="106"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="414" Column="49" TopLine="402"/>
+        <Caret Line="311" Column="19" TopLine="478"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="413" Column="49" TopLine="401"/>
+        <Caret Line="592" Column="147" TopLine="584"/>
+      </Position>
+      <Position>
+        <Filename Value="ukhstats.pas"/>
+        <Caret Line="16" Column="138"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="412" Column="49" TopLine="400"/>
+        <Caret Line="146" Column="29" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="ukhstats.pas"/>
+        <Caret Line="13" Column="28"/>
+      </Position>
+      <Position>
+        <Filename Value="ukhstats.pas"/>
+        <Caret Line="46" Column="106" TopLine="19"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="411" Column="49" TopLine="399"/>
+        <Caret Line="639" Column="143" TopLine="631"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="410" Column="49" TopLine="398"/>
+        <Caret Line="8" Column="70"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="409" Column="49" TopLine="397"/>
+        <Caret Line="490" Column="49" TopLine="462"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="408" Column="49" TopLine="396"/>
+        <Caret Line="585" Column="17" TopLine="551"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="415" Column="49" TopLine="403"/>
+        <Caret Line="632" Column="19" TopLine="608"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="414" Column="49" TopLine="402"/>
+        <Caret Line="513" Column="3" TopLine="510"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="415" Column="49" TopLine="403"/>
+        <Caret Line="181" Column="19" TopLine="415"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="416" Column="49" TopLine="404"/>
+        <Caret Line="613" Column="3" TopLine="559"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="598" Column="3" TopLine="571"/>
+        <Caret Line="169" Column="72" TopLine="144"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="610" Column="67" TopLine="591"/>
+        <Caret Line="163" Column="30" TopLine="144"/>
       </Position>
       <Position>
         <Filename Value="ukanahunter.pas"/>
-        <Caret Line="489" Column="54" TopLine="474"/>
-      </Position>
-      <Position>
-        <Filename Value="ukanahunter.pas"/>
-        <Caret Line="348" Column="49" TopLine="338"/>
-      </Position>
-      <Position>
-        <Filename Value="ukanahunter.pas"/>
-        <Caret Line="551" Column="3" TopLine="548"/>
-      </Position>
-      <Position>
-        <Filename Value="ukanahunter.pas"/>
-        <Caret Line="440" Column="50" TopLine="429"/>
+        <Caret Line="162" TopLine="146"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -48,7 +48,7 @@ end;
 
 procedure TForm2.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  setlength(newsymbols,0);
+  form1.resetNewSymbols;
 end;
 
 procedure TForm2.FormShow(Sender: TObject);
@@ -56,7 +56,7 @@ var i:integer;
 begin
   ListBox1.Clear;
   if length(newsymbols)>0 then
-  for i:=0 to length(newsymbols) do
+  for i:=0 to length(newsymbols)-1 do
   begin
     ListBox1.Items.Add(composesymbol(newsymbols[i]));
   end;
@@ -64,7 +64,7 @@ end;
 
 procedure TForm2.Button1Click(Sender: TObject);
 begin
-  setlength(newsymbols,0);
+  form1.resetNewSymbols;
   Form2.Close;
 end;
 

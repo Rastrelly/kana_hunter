@@ -19,10 +19,19 @@ type
     active:boolean;
   end;
 
+  smbstate = record
+    tries:integer;
+    succ:integer;
+    fail:integer;
+    perc:integer;
+  end;
+
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
     but_ans_0: TButton;
     but_ans_1: TButton;
     but_ans_2: TButton;
@@ -64,6 +73,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
     procedure but_ans_0Click(Sender: TObject);
     procedure but_ans_1Click(Sender: TObject);
     procedure but_ans_2Click(Sender: TObject);
@@ -87,6 +98,7 @@ type
     procedure togglecheatsheet;
     procedure refreshAnsButtons;
     procedure updateAnsStyle;
+    procedure resetNewSymbols;
   private
 
   public
@@ -96,6 +108,8 @@ type
 var
   Form1: TForm1;
   symboldb:array of smb;
+  smbstatedb:array of smbstate;
+
   activesdb: array of integer;
 
   filearr:array of string;
@@ -107,10 +121,11 @@ var
   newsymbols:array of integer;
 
   correct:smb;
+  correct_id:integer;
   score:integer=0;
   totscore:integer=0;
 
-  txfile:TextFile;
+  txfile,statefile:TextFile;
 
   r,w:integer;
 
@@ -129,12 +144,42 @@ implementation
 
 { TForm1 }
 
-uses ukhnewsymbols;
+uses ukhnewsymbols, ukhstats;
+
+procedure tform1.resetNewSymbols;
+begin
+  SetLength(newsymbols,0);
+end;
 
 procedure recordToNewsymbols(id:integer);
 begin
   setlength(newsymbols,length(newsymbols)+1);
   newsymbols[high(newsymbols)]:=id;
+end;
+
+function resetProgress:boolean;
+var i,l:integer;
+begin
+  if(MessageDlg('Reset progress','Are you sure you want to reset progress? All aggregated states and unlocks will be removed.',
+  mtConfirmation,mbOKCancel,0)=mrOK) then
+  begin
+    l:=length(smbstatedb);
+    for i:=0 to l-1 do
+    begin
+      with symboldb[i] do
+        active:=false;
+      with smbstatedb[i] do
+      begin
+        tries:=0;
+        succ:=0;
+        fail:=0;
+        succ:=0;
+      end;
+    end;
+    result:=true;
+  end
+  else
+    result:=false;
 end;
 
 procedure genactivesdb;
@@ -187,7 +232,7 @@ begin
   end;
 end;
 
-procedure unlockNewSymbol(rndUnlocks:boolean);
+procedure unlockNewSymbol(rndUnlocks:boolean; showunlockwnd:boolean);
 var i,runs:integer;
     cando:boolean;
 begin
@@ -221,7 +266,8 @@ begin
     Form1.printlatestsymbol(symboldb[i]);
     recordToNewsymbols(i);
     inc(gamelevel);
-    Form2.Show;
+
+    if showunlockwnd then Form2.Show;
   end;
 end;
 
@@ -255,7 +301,8 @@ end;
 
 procedure tform1.refreshProgressBar;
 begin
-  ProgressBar1.Min:=0;
+  if score<ProgressBar1.Min then ProgressBar1.Min:=score;
+  if (score>=0) then ProgressBar1.Min:=0;
   ProgressBar1.Position:=score;
   ProgressBar1.Max:=gamelevel*sym_tempo;
 end;
@@ -270,7 +317,9 @@ var i,j,mx,k:integer;
     adbl:integer;
     tries:integer;
 begin
+
   genactivesdb;
+
   adbl:=length(activesdb);
   mx:=Length(symboldb);
   qid:=activesdb[random(adbl)];
@@ -287,6 +336,7 @@ begin
   rav:=random(6);
   qs:=symboldb[qid];
   correct:=qs;
+  correct_id:=qid;
   canexit:=false;
 
   tries:=0;
@@ -359,11 +409,11 @@ begin
 
   if (gp<=60) then Label6.Font.Color:=clRed;
   if (gp>60) then Label6.Font.Color:=RGBToColor(255,137,39);
-  if (gp>80) then Label6.Font.Color:=RGBToColor(255,217,0);
+  if (gp>80) then Label6.Font.Color:=clYellow;
   if (gp>90) then Label6.Font.Color:=clLime;
 
 
-  Label6.Caption:='Total score: '+inttostr(totscore) + ' ('+inttostr(r)+'/'+inttostr(w)+': '+inttostr(gp)+'%)';
+  Label6.Caption:='Total score: '+inttostr(totscore) + ' (right: '+inttostr(r)+'; wrong: '+inttostr(w)+': '+inttostr(gp)+'%)';
 
   buildcheatsheet;
 end;
@@ -406,6 +456,81 @@ begin
     symboldb[high(symboldb)].category:=1;
   end;
   closefile(txfile);
+
+  setlength(smbstatedb,length(symboldb));
+
+end;
+
+procedure storesmbstate;
+var i,l:integer;
+begin
+  AssignFile(statefile, 'gamsaav.sav');
+  Rewrite(statefile);
+
+  WriteLn(statefile,inttostr(gamelevel));
+  WriteLn(statefile,inttostr(exptp));
+  WriteLn(statefile,inttostr(totscore));
+  WriteLn(statefile,inttostr(sym_tempo));
+  WriteLn(statefile,inttostr(r));
+  WriteLn(statefile,inttostr(w));
+
+  l:=length(symboldb);
+
+  for i:=0 to l-1 do
+  begin
+    if symboldb[i].active then
+    WriteLn(statefile,'1')
+    else
+    WriteLn(statefile,'0');
+    WriteLn(statefile,inttostr(smbstatedb[i].tries));
+    WriteLn(statefile,inttostr(smbstatedb[i].succ));
+    WriteLn(statefile,inttostr(smbstatedb[i].fail));
+    WriteLn(statefile,inttostr(smbstatedb[i].perc));
+  end;
+
+  CloseFile(statefile);
+end;
+
+procedure restoresmbstate;
+var i,l,tmp:integer;
+begin
+  if FileExists('gamsaav.sav') then
+  begin
+    AssignFile(statefile, 'gamsaav.sav');
+    Reset(statefile);
+
+    ReadLn(statefile,gamelevel);
+    ReadLn(statefile,exptp);
+    ReadLn(statefile,totscore);
+    ReadLn(statefile,sym_tempo);
+    ReadLn(statefile,r);
+    ReadLn(statefile,w);
+
+    l:=length(symboldb);
+
+    for i:=0 to l-1 do
+    begin
+      ReadLn(statefile,tmp);
+      if (tmp=0) then symboldb[i].active:=false;
+      if (tmp=1) then symboldb[i].active:=true;
+      ReadLn(statefile,smbstatedb[i].tries);
+      ReadLn(statefile,smbstatedb[i].succ);
+      ReadLn(statefile,smbstatedb[i].fail);
+      ReadLn(statefile,smbstatedb[i].perc);
+    end;
+
+    with form1 do
+    begin
+      edit1.Text:=inttostr(gamelevel);
+      if exptp=1 then RadioButton1.Checked:=true;
+      if exptp=2 then RadioButton2.Checked:=true;
+      if exptp=3 then RadioButton3.Checked:=true;
+    end;
+
+    CloseFile(statefile);
+
+    form1.makequestion;
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -414,6 +539,7 @@ begin
   loadsymboltables;
   togglecheatsheet;
   updateAnsStyle;
+  restoresmbstate;
 end;
 
 procedure TForm1.FormResize(Sender: TObject);
@@ -437,7 +563,6 @@ begin
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
-var i:integer;
 begin
   togglecheatsheet;
 end;
@@ -445,54 +570,71 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 var i,n:integer;
 begin
-  gamelevel:=0;
 
-  if RadioButton1.Checked then exptp:=1;
-  if RadioButton2.Checked then exptp:=2;
-  if RadioButton3.Checked then exptp:=3;
-
-  sym_tempo:=TrackBar1.Position;
-
-  for i:=0 to Length(symboldb)-1 do symboldb[i].active:=false;
-
-  if (not TryStrToInt(edit1.Text,n)) then n:=1;
-
-  if (n<1) then n:=1;
-
-  if (CheckBox2.Checked) then
+  if(resetProgress)then
   begin
-    unclockSymbolByName('a');
-    unclockSymbolByName('i');
-    unclockSymbolByName('u');
-    unclockSymbolByName('e');
-    unclockSymbolByName('o');
+
+    gamelevel:=0;
+
+    if RadioButton1.Checked then exptp:=1;
+    if RadioButton2.Checked then exptp:=2;
+    if RadioButton3.Checked then exptp:=3;
+
+    sym_tempo:=TrackBar1.Position;
+
+    totscore:=0;
+    w:=0;
+    r:=0;
+
+    for i:=0 to Length(symboldb)-1 do symboldb[i].active:=false;
+
+    if (not TryStrToInt(edit1.Text,n)) then n:=1;
+
+    if (n<1) then n:=1;
+
+    if (CheckBox2.Checked) then
+    begin
+      unclockSymbolByName('a');
+      unclockSymbolByName('i');
+      unclockSymbolByName('u');
+      unclockSymbolByName('e');
+      unclockSymbolByName('o');
+    end;
+
+    if (gamelevel<(n-1)) then
+    for i:=gamelevel to n-1 do
+    begin
+      unlockNewSymbol(CheckBox1.Checked, false);
+    end;
+
+    Form2.Show;
+
+    makequestion;
+
+    storesmbstate;
+
   end;
-
-  if (gamelevel<(n-1)) then
-  for i:=gamelevel to n-1 do
-  begin
-    unlockNewSymbol(CheckBox1.Checked);
-  end;
-
-  Form2.Show;
-
-  makequestion;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 var seltext:string;
 begin
-  form2.Close;
+
+  if (Form2.Visible) then form2.Close;
   if (sel_answ<>-1) then
   begin
     seltext:=answerset[sel_answ];
+
+    inc(smbstatedb[correct_id].tries);
+
     if(seltext=correct.written) then
     begin
        inc(score);
        inc(totscore);
+       inc(smbstatedb[correct_id].succ);
        if(score>=gamelevel*sym_tempo)then
        begin
-         unlockNewSymbol(CheckBox1.Checked);
+         unlockNewSymbol(CheckBox1.Checked, true);
          score:=0;
        end;
        refreshProgressBar;
@@ -510,9 +652,28 @@ begin
       Label7.Caption:='Wrong! It was '+correct.written+' ('+correct.symb+')';
       Label7.Font.Color:=clRed;
       inc(w);
+      inc(smbstatedb[correct_id].fail);
     end;
+
+    if (smbstatedb[correct_id].fail>0) then smbstatedb[correct_id].perc:=round(100*smbstatedb[correct_id].succ/smbstatedb[correct_id].tries)
+    else smbstatedb[correct_id].perc:=100;
+
     makequestion;
+
+    storesmbstate;
   end;
+
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+var i,l:integer;
+begin
+  ResetProgres;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+  form3.Show;
 end;
 
 procedure TForm1.but_ans_0Click(Sender: TObject);
